@@ -14,8 +14,8 @@ class AppTextStyle {
       fontSize: 17,
       fontWeight: FontWeight.bold);
   static const TextStyle secendryText = TextStyle(
-      fontFamily: AppString.fontFamily,
-      color: AppColors.mainColor,
-      fontSize: 15,
-      fontWeight: FontWeight.w100);
+    fontFamily: AppString.fontFamily,
+    color: AppColors.mainColor,
+    fontSize: 15,
+  );
 }

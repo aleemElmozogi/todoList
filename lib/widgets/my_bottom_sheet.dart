@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../cubit/todolist_cubit.dart';
+import '../cubit/todoList/todolist_cubit.dart';
 import '../logic/validators.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_string.dart';
@@ -30,7 +30,7 @@ class _MyBottomSheetDesignState extends State<MyBottomSheetDesign> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 310,
+      height: 350,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 15),
         child: Form(
@@ -50,8 +50,8 @@ class _MyBottomSheetDesignState extends State<MyBottomSheetDesign> {
                     hintTextTitle: AppString.titleHintText,
                     myController: widget.titleController,
                     validatorText: 'يجب أن يكون العنوان باللغة العربية',
-                    validatorFunction:
-                        textValidator(widget.titleController.text, arabicLettersRegex),
+                    validatorFunction: textValidator(
+                        widget.titleController.text, arabicLettersRegex),
                   ),
                   SizedBox(height: 5),
                   Text(
@@ -77,15 +77,16 @@ class _MyBottomSheetDesignState extends State<MyBottomSheetDesign> {
                           backgroundColor:
                               MaterialStateProperty.all(AppColors.primaryColor),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (!_formKey.currentState!.validate()) {
                             return;
                           } else if (widget.titleController.text.isNotEmpty) {
                             Navigator.pop(context);
                             return widget.todolistCubitProvider.addTodo(
-                                widget.titleController.text,
-                                widget.descriptionController.text,
-                                false);
+                              widget.titleController.text,
+                              widget.descriptionController.text,
+                              false,
+                            );
                           }
                         },
                         child: Padding(
